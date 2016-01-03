@@ -189,7 +189,6 @@ abstract class sc_timeline_output
 {
 
     protected $timeline_list;
-    protected $element_id_counter=1;
 
     function __construct(sc_timeline_list $timeline_list)
     {
@@ -202,12 +201,12 @@ abstract class sc_timeline_output
      * @param $year
      * @return string
      *
-     * return a string from $year that is alphanumeric. append $this->element_id_counter on the end too to ensure its unique
+     * return a string from $year that is alphanumeric. on the end too to ensure its unique
      * We do the preg_replace because $year might not be a 4 digit number.
      */
     protected function get_element_id($year)
     {
-        $year_str = preg_replace("/([^0-9A-Za-z])/", "", $year) . $this->element_id_counter++;
+        $year_str = "sc_". preg_replace("/([^0-9A-Za-z])/", "", $year) ;
         return $year_str;
     }
 
@@ -247,7 +246,7 @@ class sc_timeline_output_html extends sc_timeline_output
         foreach ($this->timeline_list->get_rows() as $year => $events) {
             $year_str = $this->get_element_id($year);
 
-            $html .= "<li class='sc_timestamp'><span id='id_$year_str>' class='sc_anchor_ts'></span>$year</li>";
+            $html .= "<li class='sc_timestamp'><span id='$year_str' class='sc_anchor_ts'></span>$year</li>";
 //                    quick hack because we started with odd/even
             $html .= "<li style='display:none;'></li>";
 
