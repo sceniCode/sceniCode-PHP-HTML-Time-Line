@@ -23,7 +23,6 @@ Basically:
 
 Or you can add them more simply with the adder() method:
 
- $date, $title, $img_filename, $desc
     $timeline_data->adder("2000", "Jan 2000", "Event title", "optional-image.jpg", "HTML Event Description");
 
 4) Then create a sc_timeline_output_html object, and echo the table of contents and the actual timeline:
